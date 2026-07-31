@@ -12,8 +12,7 @@ that tracks staff, student, and visitor presence across FNU's Nasinu campus via 
 scans, and generates a live, digital muster roll during emergencies instead of relying on manual
 paper-based headcounts.
 
-**[Live demo →](https://<your-username>.github.io/cotems-fnu/)** *(link goes live once GitHub
-Pages is enabled — see below)*
+**[Live demo →](https://jhadmin-iig.github.io/cotems-fnu/)**
 
 ## Features
 
