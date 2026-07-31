@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COTEMS Mobile App Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15242f;
+  --muted:#65747f;
+  --paper:#f6f8f7;
+  --card:#ffffff;
+  --line:#dde5e0;
+  --green:#147c62;
+  --blue:#2558a8;
+  --coral:#c94f3d;
+  --amber:#c98916;
+  --mint:#dff6ec;
+  --sky:#e2ecfb;
+  --rose:#fae4df;
+  --charcoal:#22313b;
+  --shadow:0 24px 70px rgba(26,42,50,.18);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 8%, rgba(20,124,98,.18), transparent 28%),
+    radial-gradient(circle at 85% 12%, rgba(201,79,61,.12), transparent 30%),
+    linear-gradient(140deg,#eef5f1,#f7f0e8 52%,#e8eef8);
+  display:grid;
+  place-items:center;
+  padding:24px;
+}
+.stage{
+  width:min(1180px,100%);
+  display:grid;
+  grid-template-columns:minmax(280px,1fr) 430px;
+  gap:34px;
+  align-items:center;
+}
+.brief h1{font-size:clamp(34px,5vw,64px); line-height:.96; margin:0 0 18px; letter-spacing:0}
+.brief p{font-size:18px; line-height:1.65; color:#40505b; max-width:620px; margin:0 0 24px}
+.brief-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; max-width:620px}
+.brief-card{background:rgba(255,255,255,.7); border:1px solid rgba(255,255,255,.8); border-radius:8px; padding:16px; backdrop-filter:blur(12px)}
+.brief-card strong{display:block; margin-bottom:6px}
+.brief-card span{color:var(--muted); font-size:13px; line-height:1.45}
+.phone{
+  width:390px;
+  max-width:100%;
+  height:844px;
+  background:#101820;
+  border-radius:34px;
+  padding:12px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+.screen{
+  height:100%;
+  border-radius:26px;
+  overflow:hidden;
+  background:var(--paper);
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+.status{
+  height:34px;
+  padding:10px 18px 0;
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  font-weight:700;
+  background:var(--card);
+}
+.topbar{
+  background:var(--card);
+  padding:10px 18px 14px;
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.mark{width:36px;height:36px;border-radius:8px;background:conic-gradient(from 220deg,var(--green),#67b78d,var(--blue),var(--coral),var(--green)); display:grid; place-items:center; color:white; font-weight:800}
+.brand-copy{flex:1}
+.brand-copy small{display:block; color:var(--muted); font-size:11px; font-weight:700; text-transform:uppercase}
+.brand-copy b{font-size:15px}
+.icon-btn,.tab-btn,.pill,.primary,.secondary,.ghost{
+  border:0;
+  font:inherit;
+  cursor:pointer;
+}
+.icon-btn{width:36px;height:36px;border-radius:8px;background:#edf2ef;color:var(--charcoal);font-weight:800}
+.content{flex:1; overflow:auto; padding:18px 18px 92px}
+.content::-webkit-scrollbar{width:0}
+.hero{background:linear-gradient(150deg,#203340,#176c58); color:white; border-radius:8px; padding:18px; position:relative; overflow:hidden}
+.hero:after{content:""; position:absolute; right:-40px; top:-50px; width:150px; height:150px; border:24px solid rgba(255,255,255,.12); border-radius:50%}
+.hero small{opacity:.8; font-size:12px; font-weight:700; text-transform:uppercase}
+.hero h2{font-size:24px; line-height:1.12; margin:8px 0 12px}
+.hero p{font-size:13px; line-height:1.45; opacity:.86; margin:0}
+.role-row{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:14px 0}
+.role{padding:9px 4px; border-radius:8px; background:#e9efeb; color:#42515a; border:1px solid transparent; font-size:11px; font-weight:800}
+.role.active{background:var(--green); color:white}
+.section-head{display:flex; align-items:end; justify-content:space-between; margin:20px 0 10px}
+.section-head h3{margin:0;font-size:16px}
+.section-head span{color:var(--muted);font-size:12px;font-weight:700}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px}
+.metric b{font-size:24px;display:block}
+.metric span{font-size:12px;color:var(--muted);font-weight:700}
+.metric.green{background:var(--mint)}
+.metric.blue{background:var(--sky)}
+.metric.coral{background:var(--rose)}
+.metric.amber{background:#fff0d8}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.primary,.secondary,.ghost{border-radius:8px;padding:13px 12px;font-weight:800}
+.primary{background:var(--green);color:white}
+.secondary{background:var(--charcoal);color:white}
+.ghost{background:#edf2ef;color:var(--charcoal)}
+.list{display:grid;gap:10px}
+.row{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px}
+.row-icon{width:40px;height:40px;border-radius:8px;display:grid;place-items:center;background:#edf2ef;font-weight:900;color:var(--green)}
+.row-main{flex:1;min-width:0}
+.row-main b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-main span{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.badge{border-radius:999px;padding:5px 8px;font-size:11px;font-weight:900;background:#edf2ef;color:#53616a}
+.safe{background:var(--mint);color:var(--green)}
+.warn{background:#fff0d8;color:#94610e}
+.danger{background:var(--rose);color:var(--coral)}
+.scan-box{height:250px;border-radius:8px;background:#102029;position:relative;overflow:hidden;display:grid;place-items:center;color:white;margin-bottom:14px}
+.scan-box:before{content:"";width:176px;height:176px;border:3px solid rgba(255,255,255,.9);border-radius:12px;box-shadow:0 0 0 999px rgba(0,0,0,.24)}
+.scan-line{position:absolute;width:190px;height:3px;background:#55e6b3;top:92px;box-shadow:0 0 18px #55e6b3;animation:scan 2.2s infinite}
+@keyframes scan{50%{transform:translateY(112px)}}
+.map{height:250px;border-radius:8px;background:#d9eadf;position:relative;overflow:hidden;border:1px solid var(--line)}
+.path{position:absolute;left:20px;right:20px;top:126px;height:8px;background:#bbcfc4;border-radius:999px}
+.building{position:absolute;border-radius:8px;padding:10px;background:white;border:1px solid #b7cbc0;box-shadow:0 8px 18px rgba(34,49,59,.1);font-size:11px;font-weight:900}
+.b1{left:24px;top:28px}.b2{right:30px;top:44px}.b3{left:80px;bottom:42px}.b4{right:40px;bottom:62px}
+.pin{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--coral);border:3px solid white;left:184px;top:119px}
+.form{display:grid;gap:10px}
+.field{display:grid;gap:6px}
+.field label{font-size:12px;font-weight:800;color:#42515a}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;background:white;padding:12px;font:inherit;color:var(--ink)}
+.pass{background:linear-gradient(140deg,#fff,#e9f5ef);border:1px solid var(--line);border-radius:8px;padding:16px}
+.qr{width:132px;height:132px;background:
+  linear-gradient(90deg,#111 12px,transparent 12px) 0 0/24px 24px,
+  linear-gradient(#111 12px,transparent 12px) 0 0/24px 24px,
+  white;border:10px solid white;margin:14px auto;border-radius:8px;box-shadow:0 0 0 1px var(--line)}
+.progress{height:10px;background:#e4ebe7;border-radius:999px;overflow:hidden}
+.bar{height:100%;background:linear-gradient(90deg,var(--green),#72b56f);border-radius:999px}
+.bottom-nav{position:absolute;bottom:0;left:0;right:0;height:76px;background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px 10px;backdrop-filter:blur(16px)}
+.tab-btn{background:transparent;border-radius:8px;color:#75818a;font-size:10px;font-weight:800;display:grid;place-items:center;gap:3px}
+.tab-btn b{font-size:18px;line-height:1}
+.tab-btn.active{background:#e8f3ee;color:var(--green)}
+.view{display:none}.view.active{display:block}
+.toast{position:absolute;left:18px;right:18px;bottom:88px;background:#17252e;color:white;border-radius:8px;padding:13px 14px;font-size:13px;font-weight:700;transform:translateY(20px);opacity:0;pointer-events:none;transition:.25s}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:900px){
+  body{padding:0;background:#101820}
+  .stage{display:block;width:100%}
+  .brief{display:none}
+  .phone{width:100%;height:100vh;border-radius:0;padding:0;box-shadow:none}
+  .screen{border-radius:0}
+}
+</style>
+</head>
+<body>
+<main class="stage">
+  <section class="brief">
+    <h1>COTEMS mobile app design</h1>
+    <p>A complete mobile-first product concept for Fiji National University's Campus Occupant Tracking and Emergency Mustering System, covering daily checkpoint use, visitor flow, warden response, admin control, and reporting.</p>
+    <div class="brief-grid">
+      <div class="brief-card"><strong>Role aware</strong><span>Student, staff, visitor, security warden, and administrator experiences share one app shell.</span></div>
+      <div class="brief-card"><strong>Emergency first</strong><span>Muster status, assembly points, and unresolved people stay one tap away.</span></div>
+      <div class="brief-card"><strong>Campus ready</strong><span>Building occupancy, checkpoint activity, visitor passes, and drill analytics are represented.</span></div>
+      <div class="brief-card"><strong>Prototypeable</strong><span>Every tab and main action is clickable for demos, reviews, and project presentation.</span></div>
+    </div>
+  </section>
+
+  <section class="phone" aria-label="COTEMS mobile prototype">
+    <div class="screen">
+      <div class="status"><span>8:41</span><span>5G 92%</span></div>
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark">C</div>
+          <div class="brand-copy"><small id="roleCaption">Student mode</small><b>COTEMS FNU</b></div>
+          <button class="icon-btn" onclick="setView('alerts')" aria-label="Open alerts">!</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section id="home" class="view active">
+          <div class="hero">
+            <small>Nasinu Campus</small>
+            <h2 id="heroTitle">Good evening, Jotame.</h2>
+            <p id="heroCopy">You are checked in at ICT & Engineering Block. Keep your status accurate before moving buildings.</p>
+          </div>
+          <div class="role-row">
+            <button class="role active" data-role="student" onclick="setRole('student')">Student</button>
+            <button class="role" data-role="visitor" onclick="setRole('visitor')">Visitor</button>
+            <button class="role" data-role="warden" onclick="setRole('warden')">Warden</button>
+            <button class="role" data-role="admin" onclick="setRole('admin')">Admin</button>
+          </div>
+          <div class="grid-2">
+            <div class="card metric green"><b id="campusCount">423</b><span>On campus</span></div>
+            <div class="card metric coral"><b id="riskCount">7</b><span>Need attention</span></div>
+          </div>
+          <div class="actions">
+            <button class="primary" onclick="setView('scan')">Scan checkpoint</button>
+            <button class="secondary" onclick="setView('muster')">Muster status</button>
+          </div>
+          <div class="section-head"><h3>Today</h3><span>Live</span></div>
+          <div class="list" id="homeList"></div>
+        </section>
+
+        <section id="scan" class="view">
+          <div class="section-head"><h3>Checkpoint scan</h3><span>QR/NFC</span></div>
+          <div class="scan-box"><div class="scan-line"></div></div>
+          <div class="card">
+            <div class="field">
+              <label>Detected checkpoint</label>
+              <select id="buildingSelect">
+                <option>ICT & Engineering Block</option>
+                <option>Library & Learning Commons</option>
+                <option>Science Complex</option>
+                <option>Student Hub & Cafeteria</option>
+                <option>Trades & Workshops</option>
+              </select>
+            </div>
+            <div class="actions">
+              <button class="primary" onclick="checkIn()">Check in</button>
+              <button class="ghost" onclick="checkOut()">Check out</button>
+            </div>
+          </div>
+          <div class="section-head"><h3>Recent scans</h3><span>Audit ready</span></div>
+          <div class="list" id="scanList"></div>
+        </section>
+
+        <section id="map" class="view">
+          <div class="section-head"><h3>Campus map</h3><span>Assembly routing</span></div>
+          <div class="map">
+            <div class="path"></div><div class="pin"></div>
+            <div class="building b1">Library<br>116</div>
+            <div class="building b2">ICT<br>88</div>
+            <div class="building b3">Science<br>64</div>
+            <div class="building b4">Hub<br>101</div>
+          </div>
+          <div class="section-head"><h3>Buildings</h3><span>Capacity</span></div>
+          <div class="list" id="buildingList"></div>
+        </section>
+
+        <section id="visitor" class="view">
+          <div class="section-head"><h3>Visitor registration</h3><span>Kiosk flow</span></div>
+          <div class="card form">
+            <div class="field"><label>Full name</label><input id="visitorName" value="Mere Tawake"></div>
+            <div class="field"><label>Mobile number</label><input value="+679 701 2244"></div>
+            <div class="field"><label>Host or department</label><input value="College of Engineering, Science and Technology"></div>
+            <div class="field"><label>Purpose</label><textarea rows="3">Project consultation meeting</textarea></div>
+            <div class="field"><label>Destination</label><select><option>Administration Building</option><option>ICT & Engineering Block</option><option>Library & Learning Commons</option></select></div>
+            <button class="primary" onclick="issuePass()">Issue visitor pass</button>
+          </div>
+        </section>
+
+        <section id="pass" class="view">
+          <div class="section-head"><h3>Visitor pass</h3><span>Valid today</span></div>
+          <div class="pass">
+            <div class="row" style="border:0;background:transparent;padding:0">
+              <div class="row-icon">V</div>
+              <div class="row-main"><b id="passName">Mere Tawake</b><span>FNU-VIS-1001 - Administration Building</span></div>
+              <span class="badge safe">Active</span>
+            </div>
+            <div class="qr"></div>
+            <button class="secondary" style="width:100%" onclick="showToast('Visitor checked out and pass closed')">Check out visitor</button>
+          </div>
+        </section>
+
+        <section id="muster" class="view">
+          <div class="section-head"><h3>Emergency muster</h3><span id="eventState">Drill ready</span></div>
+          <div class="card metric coral">
+            <b id="safeCount">76%</b><span>Accounted for across all assembly points</span>
+            <div class="progress" style="margin-top:12px"><div id="safeBar" class="bar" style="width:76%"></div></div>
+          </div>
+          <div class="actions">
+            <button class="primary" onclick="declareEvent()">Declare drill</button>
+            <button class="ghost" onclick="markSafe()">Mark next safe</button>
+          </div>
+          <div class="section-head"><h3>Muster roll</h3><span>By point</span></div>
+          <div class="list" id="musterList"></div>
+        </section>
+
+        <section id="admin" class="view">
+          <div class="section-head"><h3>Admin console</h3><span>Governance</span></div>
+          <div class="grid-2">
+            <div class="card metric blue"><b>1,248</b><span>Registered users</span></div>
+            <div class="card metric amber"><b>18</b><span>Checkpoints</span></div>
+          </div>
+          <div class="section-head"><h3>Controls</h3><span>System</span></div>
+          <div class="list">
+            <div class="row"><div class="row-icon">U</div><div class="row-main"><b>User directory</b><span>CSV import, roles, emergency contacts</span></div><span class="badge">Open</span></div>
+            <div class="row"><div class="row-icon">B</div><div class="row-main"><b>Buildings & muster points</b><span>Capacity, checkpoint mapping, assembly zones</span></div><span class="badge">Open</span></div>
+            <div class="row"><div class="row-icon">A</div><div class="row-main"><b>Audit log</b><span>Searchable scan, admin, and event records</span></div><span class="badge safe">Synced</span></div>
+          </div>
+        </section>
+
+        <section id="analytics" class="view">
+          <div class="section-head"><h3>Analytics</h3><span>30 days</span></div>
+          <div class="grid-2">
+            <div class="card metric green"><b>4.8m</b><span>Avg drill time</span></div>
+            <div class="card metric blue"><b>91%</b><span>Scan compliance</span></div>
+          </div>
+          <div class="section-head"><h3>Bottlenecks</h3><span>Trends</span></div>
+          <div class="list">
+            <div class="row"><div class="row-icon">A</div><div class="row-main"><b>Point A - Main Oval</b><span>Slowest assembly point this month</span></div><span class="badge danger">8.2m</span></div>
+            <div class="row"><div class="row-icon">H</div><div class="row-main"><b>Student Hub</b><span>Peak occupancy 12:15 PM to 1:30 PM</span></div><span class="badge warn">High</span></div>
+            <div class="row"><div class="row-icon">L</div><div class="row-main"><b>Library</b><span>Best checkpoint compliance</span></div><span class="badge safe">97%</span></div>
+          </div>
+        </section>
+
+        <section id="alerts" class="view">
+          <div class="section-head"><h3>Alerts</h3><span>Priority</span></div>
+          <div class="list">
+            <div class="row"><div class="row-icon">!</div><div class="row-main"><b>Two visitors overdue</b><span>Administration Building passes exceed 4 hours</span></div><span class="badge warn">Review</span></div>
+            <div class="row"><div class="row-icon">M</div><div class="row-main"><b>Next drill scheduled</b><span>Wednesday, 10:00 AM - Point B observers assigned</span></div><span class="badge">Info</span></div>
+            <div class="row"><div class="row-icon">Q</div><div class="row-main"><b>Checkpoint maintenance</b><span>Science Complex QR panel replaced</span></div><span class="badge safe">Done</span></div>
+          </div>
+        </section>
+      </div>
+
+      <nav class="bottom-nav" aria-label="Primary navigation">
+        <button class="tab-btn active" data-view="home" onclick="setView('home')"><b>H</b>Home</button>
+        <button class="tab-btn" data-view="scan" onclick="setView('scan')"><b>S</b>Scan</button>
+        <button class="tab-btn" data-view="map" onclick="setView('map')"><b>M</b>Map</button>
+        <button class="tab-btn" data-view="muster" onclick="setView('muster')"><b>R</b>Muster</button>
+        <button class="tab-btn" data-view="analytics" onclick="setView(role==='admin'?'admin':'analytics')"><b>O</b>More</button>
+      </nav>
+      <div id="toast" class="toast"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+const buildings = [
+  ['Library & Learning Commons','Point A - Main Oval','116 / 220'],
+  ['ICT & Engineering Block','Point B - Rear Car Park','88 / 180'],
+  ['Science Complex','Point A - Main Oval','64 / 150'],
+  ['Administration Building','Point C - Front Lawn','54 / 90'],
+  ['Student Hub & Cafeteria','Point B - Rear Car Park','101 / 200']
+];
+const scans = [
+  ['Jotame Halofaki','IN - ICT & Engineering Block','2 min ago'],
+  ['Suka Buadromo','IN - Library & Learning Commons','8 min ago'],
+  ['Visitor Mere Tawake','IN - Administration Building','15 min ago']
+];
+const muster = [
+  ['Point A - Main Oval','126 safe - 14 pending','warn'],
+  ['Point B - Rear Car Park','144 safe - 7 pending','warn'],
+  ['Point C - Front Lawn','72 safe - 0 pending','safe'],
+  ['Point D - Workshop Yard','41 safe - 3 pending','danger']
+];
+let role = 'student';
+let safe = 76;
+
+function row(icon,title,sub,badge,kind=''){
+  return `<div class="row"><div class="row-icon">${icon}</div><div class="row-main"><b>${title}</b><span>${sub}</span></div><span class="badge ${kind}">${badge}</span></div>`;
+}
+function renderLists(){
+  document.getElementById('homeList').innerHTML = [
+    row('I','ICT & Engineering Block','You checked in by QR checkpoint','Inside','safe'),
+    row('E','Emergency readiness','Assembly point: Point B - Rear Car Park','Ready','safe'),
+    row('V','Visitor activity','3 active visitors hosted by CEST today','Live','warn')
+  ].join('');
+  document.getElementById('scanList').innerHTML = scans.map((s,i)=>row(['J','S','V'][i],s[0],s[1],s[2],i===2?'warn':'safe')).join('');
+  document.getElementById('buildingList').innerHTML = buildings.map((b,i)=>row(['L','I','S','A','H'][i],b[0],b[1],b[2],i===4?'warn':'')).join('');
+  document.getElementById('musterList').innerHTML = muster.map((m,i)=>row(['A','B','C','D'][i],m[0],m[1],m[2]==='safe'?'Clear':'Pending',m[2])).join('');
+}
+function setView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.view===id || (id==='admin' && b.dataset.view==='analytics')));
+}
+function setRole(next){
+  role = next;
+  document.querySelectorAll('.role').forEach(b=>b.classList.toggle('active',b.dataset.role===role));
+  const data = {
+    student:['Student mode','Good evening, Jotame.','You are checked in at ICT & Engineering Block. Keep your status accurate before moving buildings.','423','7'],
+    visitor:['Visitor mode','Welcome to FNU Nasinu.','Register your visit, keep your pass visible, and check out before leaving campus.','38','2'],
+    warden:['Warden mode','Campus muster command.','Monitor occupancy, declare events, and account for people at assembly points.','423','24'],
+    admin:['Admin mode','System administration.','Manage buildings, checkpoints, users, audit records, and governance controls.','1,248','18']
+  }[role];
+  document.getElementById('roleCaption').textContent = data[0];
+  document.getElementById('heroTitle').textContent = data[1];
+  document.getElementById('heroCopy').textContent = data[2];
+  document.getElementById('campusCount').textContent = data[3];
+  document.getElementById('riskCount').textContent = data[4];
+  if(role==='visitor') setView('visitor');
+  else if(role==='warden') setView('muster');
+  else if(role==='admin') setView('admin');
+  else setView('home');
+}
+function showToast(message){
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),2200);
+}
+function checkIn(){
+  const building = document.getElementById('buildingSelect').value;
+  scans.unshift(['Jotame Halofaki',`IN - ${building}`,'Now']);
+  scans.splice(3);
+  renderLists();
+  showToast(`Checked in at ${building}`);
+}
+function checkOut(){
+  scans.unshift(['Jotame Halofaki','OUT - ICT & Engineering Block','Now']);
+  scans.splice(3);
+  renderLists();
+  showToast('Checked out successfully');
+}
+function issuePass(){
+  document.getElementById('passName').textContent = document.getElementById('visitorName').value || 'Campus visitor';
+  setView('pass');
+  showToast('Visitor pass issued');
+}
+function declareEvent(){
+  document.getElementById('eventState').textContent = 'Live drill';
+  safe = 64;
+  updateSafe();
+  showToast('Emergency drill declared. Muster roll generated.');
+}
+function markSafe(){
+  safe = Math.min(100, safe + 6);
+  updateSafe();
+  showToast('Person marked safe at assembly point');
+}
+function updateSafe(){
+  document.getElementById('safeCount').textContent = `${safe}%`;
+  document.getElementById('safeBar').style.width = `${safe}%`;
+}
+renderLists();
+</script>
+</body>
+</html>
