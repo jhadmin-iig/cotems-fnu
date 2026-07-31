@@ -14,7 +14,7 @@ paper-based headcounts.
 
 **[Live demo →](https://jhadmin-iig.github.io/cotems-fnu/)**
 
-**[Mobile app prototype →](https://jhadmin-iig.github.io/cotems-fnu/mobile-app/)**
+**[Mobile app prototype →](https://jhadmin-iig.github.io/cotems-fnu/mobile-app/index.html)**
 
 ## Features
 
