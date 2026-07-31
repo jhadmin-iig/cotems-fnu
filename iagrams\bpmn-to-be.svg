@@ -1,0 +1,87 @@
+<svg viewBox="0 0 1300 650" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif">
+  <defs>
+    <marker id="arrow2" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#5b6b74"/>
+    </marker>
+  </defs>
+  <rect width="1300" height="650" fill="#FFFFFF"/>
+  <text x="650" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#0F2537">TO-BE Process — COTEMS Digital Emergency Mustering</text>
+  <text x="650" y="50" text-anchor="middle" font-size="12" fill="#5b6b74">Live occupancy log drives an automatically generated, continuously updating muster roll</text>
+
+  <!-- LANES -->
+  <g>
+    <rect x="40" y="75" width="1220" height="176" fill="#F7FAFB" stroke="#D8E1E5"/>
+    <rect x="40" y="251" width="1220" height="176" fill="#FFFFFF" stroke="#D8E1E5"/>
+    <rect x="40" y="427" width="1220" height="178" fill="#F7FAFB" stroke="#D8E1E5"/>
+    <text x="65" y="163" font-size="13" font-weight="700" fill="#0F2537" transform="rotate(-90 65 163)" text-anchor="middle">Security Warden</text>
+    <text x="65" y="339" font-size="13" font-weight="700" fill="#0F2537" transform="rotate(-90 65 339)" text-anchor="middle">COTEMS System</text>
+    <text x="65" y="516" font-size="13" font-weight="700" fill="#0F2537" transform="rotate(-90 65 516)" text-anchor="middle">Occupants / Visitors</text>
+  </g>
+
+  <!-- Start event -->
+  <circle cx="230" cy="163" r="20" fill="#2DD4BF"/>
+  <text x="230" y="168" text-anchor="middle" font-size="9" fill="#04241F" font-weight="700">Incident</text>
+
+  <!-- Warden: declare -->
+  <rect x="300" y="133" width="220" height="60" rx="10" fill="#0F2537"/>
+  <text x="410" y="158" text-anchor="middle" font-size="12" fill="#F2F6F5">Declare emergency in</text>
+  <text x="410" y="174" text-anchor="middle" font-size="12" fill="#F2F6F5">warden dashboard</text>
+
+  <!-- System: snapshot + generate roll -->
+  <rect x="300" y="309" width="220" height="60" rx="10" fill="#0F2537"/>
+  <text x="410" y="334" text-anchor="middle" font-size="12" fill="#F2F6F5">Snapshot occupancy log →</text>
+  <text x="410" y="350" text-anchor="middle" font-size="12" fill="#F2F6F5">generate digital muster roll</text>
+
+  <!-- System: push alert -->
+  <rect x="570" y="309" width="220" height="60" rx="10" fill="#0F2537"/>
+  <text x="680" y="334" text-anchor="middle" font-size="12" fill="#F2F6F5">Push alert to expected</text>
+  <text x="680" y="350" text-anchor="middle" font-size="12" fill="#F2F6F5">occupants (FCM)</text>
+
+  <!-- Occupants: proceed -->
+  <rect x="570" y="481" width="200" height="60" rx="10" fill="#0F2537"/>
+  <text x="670" y="506" text-anchor="middle" font-size="12" fill="#F2F6F5">Proceed to assigned</text>
+  <text x="670" y="522" text-anchor="middle" font-size="12" fill="#F2F6F5">muster point</text>
+
+  <!-- Occupants: check in -->
+  <rect x="820" y="481" width="200" height="60" rx="10" fill="#0F2537"/>
+  <text x="920" y="506" text-anchor="middle" font-size="12" fill="#F2F6F5">Check in at muster point</text>
+  <text x="920" y="522" text-anchor="middle" font-size="12" fill="#F2F6F5">(QR / self-report)</text>
+
+  <!-- System: update dashboard -->
+  <rect x="870" y="309" width="220" height="60" rx="10" fill="#0F2537"/>
+  <text x="980" y="334" text-anchor="middle" font-size="12" fill="#F2F6F5">Update dashboard &amp; tide</text>
+  <text x="980" y="350" text-anchor="middle" font-size="12" fill="#F2F6F5">gauge in real time</text>
+
+  <!-- Gateway -->
+  <polygon points="1090,133 1140,163 1090,193 1040,163" fill="#FF6B4A"/>
+  <text x="1090" y="158" text-anchor="middle" font-size="10" fill="#2B0E05" font-weight="700">All</text>
+  <text x="1090" y="170" text-anchor="middle" font-size="10" fill="#2B0E05" font-weight="700">accounted?</text>
+
+  <!-- No branch: dispatch search -->
+  <path d="M1090,133 L1090,80 L1230,80 L1230,163" fill="none" stroke="#5b6b74" stroke-width="1.6" stroke-dasharray="4,3" marker-end="url(#arrow2)"/>
+  <text x="1160" y="72" text-anchor="middle" font-size="10.5" fill="#5b6b74">No — dispatch search to</text>
+  <text x="1160" y="85" text-anchor="middle" font-size="10.5" fill="#5b6b74">last known building</text>
+
+  <!-- Resolve emergency task -->
+  <rect x="900" y="105" width="220" height="60" rx="10" fill="#0F2537"/>
+  <text x="1010" y="130" text-anchor="middle" font-size="12" fill="#F2F6F5">Resolve emergency,</text>
+  <text x="1010" y="146" text-anchor="middle" font-size="12" fill="#F2F6F5">log summary</text>
+
+  <!-- End event -->
+  <circle cx="1200" cy="135" r="20" fill="#2DD4BF" stroke="#04241F" stroke-width="2"/>
+  <text x="1200" y="140" text-anchor="middle" font-size="9" fill="#04241F" font-weight="700">Stand down</text>
+
+  <!-- ARROWS -->
+  <path d="M250,163 L298,163" stroke="#5b6b74" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <path d="M410,193 C410,240 410,270 410,307" stroke="#5b6b74" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <path d="M520,339 L568,339" stroke="#5b6b74" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <path d="M680,369 C680,420 675,450 672,479" stroke="#5b6b74" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <path d="M770,511 L818,511" stroke="#5b6b74" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <path d="M950,481 C960,440 965,400 970,371" stroke="#5b6b74" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <path d="M1090,309 C1090,270 1090,220 1090,195" stroke="#5b6b74" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <path d="M1120,163 C1150,163 1170,150 1180,140" stroke="#5b6b74" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <text x="1140" y="180" text-anchor="middle" font-size="10.5" fill="#5b6b74">Yes</text>
+  <path d="M1220,135 L1230,135" stroke="#5b6b74" stroke-width="1.6"/>
+
+  <text x="650" y="630" text-anchor="middle" font-size="11" fill="#8FA6B2">COTEMS · CIN815 Postgraduate Diploma in Information Systems · Fiji National University</text>
+</svg>
