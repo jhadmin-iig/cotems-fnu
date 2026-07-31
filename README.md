@@ -14,6 +14,8 @@ paper-based headcounts.
 
 **[Live demo →](https://jhadmin-iig.github.io/cotems-fnu/)**
 
+**[Mobile app prototype →](https://jhadmin-iig.github.io/cotems-fnu/mobile-app/)**
+
 ## Features
 
 - **Role-based sign-in** — Student/Staff, Visitor, Security Warden, System Administrator
@@ -50,6 +52,7 @@ python3 -m http.server 8000
 
 ```
 index.html                     Full system prototype (current version)
+mobile-app/index.html           Mobile-first app design and clickable prototype
 diagrams/erd.svg                Entity-relationship diagram
 diagrams/bpmn-as-is.svg          Current manual mustering process
 diagrams/bpmn-to-be.svg          Proposed COTEMS digital process
